@@ -14,7 +14,7 @@ sifre =int(input("Lütfen şifrenizi giriniz."))
 if sifre==_kartsifre:
     print("Giriş Başarılı")
 else:
-    sifre =int(input("Lütfen şifrenizi giriniz."))
+    sifre =int(input("Lütfen şifrenizi giriniz."))       ##### DOĞRUYSA GİRİŞ BAŞARILI YAPIP NORMAL İŞLEMLERE DEVAM EDİLMESİ GEREKİYORDU. 
     sifre =int(input("Lütfen şifrenizi giriniz."))
     print("Kartınız erişime kapatılmıştır.")
     
