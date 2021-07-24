@@ -1,0 +1,57 @@
+print(""""
+ATM
+1.Para Çekme
+2.Para Yatırma
+3.Bakiye Sorgulama
+4.Kart İade
+ """)
+
+bakiye=2000
+_kartsifre =1234
+sifresayac=3
+sifre =int(input("Lütfen şifrenizi giriniz."))
+
+if sifre==_kartsifre:
+    print("Giriş Başarılı")
+else:
+    sifre =int(input("Lütfen şifrenizi giriniz."))
+    sifre =int(input("Lütfen şifrenizi giriniz."))
+    print("Kartınız erişime kapatılmıştır.")
+    
+                                                          ###### BURADA ERİŞİMDEN SONRA SONLANDIRMAM GEREKİYOR AMA BREAK KOMUTU HATA VERİYOR. 
+
+
+
+cevap=int(input("Lütfen yapmak istediğiniz işlemi seçiniz.")) 
+if cevap == 4:
+    print("Lütfen bekleyiniz.")
+    print("Kartınızı almayı unutmayın.")
+     
+elif cevap == 3:
+    print("Bakiyeniz {} TL" .format(bakiye))
+elif cevap == 2:
+    print("Lütfen bekleyiniz...")
+    yatır=int(input("Lütfen yatırmak istediğiniz tutarı giriniz"))
+    print("Paranız hesabınıza başarılı şekilde aktarılmıştır.")
+    bakiye+=yatır
+    print("Bakiyenize {} TL aktarılmıştır." .format(yatır))
+    print("Bakiyenizde toplam {} TL bulunmaktadir.İyi günlerde harcayın" .format(bakiye))
+elif cevap == 1:
+    print("Lütfen bekleyiniz...")
+    cek=int(input("Lütfen çekmek istediğiniz tutarı giriniz"))
+    if cek>bakiye:
+        print("Bakiyeniz yetersiz.")                                           #####BURADA BAKİYE YETERSİZSE TEKRARDAN SORMASI LAZIM ONU YAPAMADIM.
+        
+        
+    if cek<=bakiye: 
+        print("Paranız çekildi..")
+               
+    bakiye-=cek
+  
+    print("Bakiyenizde {} TL bulunmaktadir" .format(bakiye))
+ 
+   
+    print("Kartınızı ve parayı almayı unutmayınız. İyi günlerde kullanın")
+else:
+    print("Lütfen 1-4 arasında bir seçim yapınız") 
+                                                                             #######İŞLEMLERDEN SONRA BAŞKA BİR ŞEY YAPMAK İSTİYOR MUSUNUZ DİYE SORMASI YA DA KESMESİ LAZIM ONU YAPAMADIM. 
