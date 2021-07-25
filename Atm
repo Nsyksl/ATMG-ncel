@@ -6,52 +6,63 @@ ATM
 4.Kart İade
  """)
 
-bakiye=2000
-_kartsifre =1234
-sifresayac=3
-sifre =int(input("Lütfen şifrenizi giriniz."))
-
-if sifre==_kartsifre:
+bakiye = 2000
+deneme_hakkı = 3
+kart_sifre = 1234
+sifre = int(input("Lütfen şifrenizi giriniz.\n"))
+sifre_kontrol = False
+while sifre_kontrol == False:
+  if sifre == kart_sifre:
     print("Giriş Başarılı")
-else:
-    sifre =int(input("Lütfen şifrenizi giriniz."))       ##### DOĞRUYSA GİRİŞ BAŞARILI YAPIP NORMAL İŞLEMLERE DEVAM EDİLMESİ GEREKİYORDU. 
-    sifre =int(input("Lütfen şifrenizi giriniz."))
-    print("Kartınız erişime kapatılmıştır.")
-    
-                                                          ###### BURADA ERİŞİMDEN SONRA SONLANDIRMAM GEREKİYOR AMA BREAK KOMUTU HATA VERİYOR. 
-
-
-
-cevap=int(input("Lütfen yapmak istediğiniz işlemi seçiniz.")) 
-if cevap == 4:
-    print("Lütfen bekleyiniz.")
-    print("Kartınızı almayı unutmayın.")
-     
-elif cevap == 3:
-    print("Bakiyeniz {} TL" .format(bakiye))
-elif cevap == 2:
-    print("Lütfen bekleyiniz...")
-    yatır=int(input("Lütfen yatırmak istediğiniz tutarı giriniz"))
-    print("Paranız hesabınıza başarılı şekilde aktarılmıştır.")
-    bakiye+=yatır
-    print("Bakiyenize {} TL aktarılmıştır." .format(yatır))
-    print("Bakiyenizde toplam {} TL bulunmaktadir.İyi günlerde harcayın" .format(bakiye))
-elif cevap == 1:
-    print("Lütfen bekleyiniz...")
-    cek=int(input("Lütfen çekmek istediğiniz tutarı giriniz"))
-    if cek>bakiye:
-        print("Bakiyeniz yetersiz.")                                           #####BURADA BAKİYE YETERSİZSE TEKRARDAN SORMASI LAZIM ONU YAPAMADIM.
-        
-        
-    if cek<=bakiye: 
-        print("Paranız çekildi..")
-               
-    bakiye-=cek
+    sifre_kontrol = True
+  elif deneme_hakkı == 0:
+      print("Kartınız erişime kapatılmıştır.")
+      break
+  else:
+    sifre = int(input(f"Hatalı giriş yaptınız. Lütfen şifrenizi giriniz. Kalan deneme hakkınız {deneme_hakkı}\n"))
+    deneme_hakkı -= 1
   
-    print("Bakiyenizde {} TL bulunmaktadir" .format(bakiye))
- 
-   
-    print("Kartınızı ve parayı almayı unutmayınız. İyi günlerde kullanın")
-else:
-    print("Lütfen 1-4 arasında bir seçim yapınız") 
-                                                                             #######İŞLEMLERDEN SONRA BAŞKA BİR ŞEY YAPMAK İSTİYOR MUSUNUZ DİYE SORMASI YA DA KESMESİ LAZIM ONU YAPAMADIM. 
+###### BURADA ERİŞİMDEN SONRA SONLANDIRMAM GEREKİYOR AMA BREAK KOMUTU HATA VERİYOR. (break komutunun kullanımı için durdurulması gereken bir loop olması gerekiyor)
+
+def islem(bakiye = bakiye):
+  if sifre == kart_sifre:
+    cevap = int(input("Lütfen yapmak istediğiniz işlemi seçiniz.\n")) 
+    if cevap == 4:
+        print("Lütfen bekleyiniz.")
+        print("Kartınızı almayı unutmayın.")
+        
+    elif cevap == 3:
+        print("Bakiyeniz {} TL\n" .format(bakiye))
+    elif cevap == 2:
+        print("Lütfen bekleyiniz...")
+        yatır = int(input("Lütfen yatırmak istediğiniz tutarı giriniz\n"))
+        print("Paranız hesabınıza başarılı şekilde aktarılmıştır.\n")
+        bakiye += yatır
+        print("Bakiyenize {} TL aktarılmıştır." .format(yatır))
+        print("Bakiyenizde toplam {} TL bulunmaktadir.İyi günlerde harcayın\n".format(bakiye))
+    elif cevap == 1:
+        print("Lütfen bekleyiniz...\n")
+        cek = int(input("Lütfen çekmek istediğiniz tutarı giriniz.\n"))
+        while cek > bakiye:
+            cek = int(input("Bakiyeniz yetersiz. Lütfen çekmek istediğiniz tutarı giriniz.\n"))                                           
+    #####BURADA BAKİYE YETERSİZSE TEKRARDAN SORMASI LAZIM ONU YAPAMADIM.
+                   
+        if cek <= bakiye: 
+            print("Paranız çekildi..\n")
+                  
+        bakiye -= cek
+      
+        print("Bakiyenizde {} TL bulunmaktadir\n" .format(bakiye))
+    
+      
+        print("Kartınızı ve parayı almayı unutmayınız. İyi günlerde kullanın.\n")
+    else:
+        print("Lütfen 1-4 arasında bir seçim yapınız.\n") 
+
+#######İŞLEMLERDEN SONRA BAŞKA BİR ŞEY YAPMAK İSTİYOR MUSUNUZ DİYE SORMASI YA DA KESMESİ LAZIM ONU YAPAMADIM.(Yapılan işlemleri tekrarlamak için fonksiyonları kullanabilirsiniz. Basitçe kodla çok fazla oynamadan uygulamaya çalıştım :))
+if sifre == kart_sifre:
+  islem()
+  yeni_islem = input("Başka bir işlem yapmak ister misiniz? evet/hayır\n") 
+  while yeni_islem == "evet":
+    islem()
+    yeni_islem = input("Başka bir işlem yapmak ister misiniz? evet/hayır\n")
